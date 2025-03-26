@@ -1,0 +1,15 @@
+{
+  "manifest_version": 3,
+  "name": "PinChat for ChatGPT",
+  "version": "1.0",
+  "description": "Bookmark important ChatGPT chats to revisit later.",
+  "permissions": ["storage", "activeTab", "scripting"],
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icon.png",
+      "48": "icon.png",
+      "128": "icon.png"
+    }
+  }
+}
