@@ -24,7 +24,26 @@ document.addEventListener("DOMContentLoaded", function () {
             bookmarkList.innerHTML = "";
             (data.bookmarks || []).forEach((bookmark, index) => {
                 let li = document.createElement("li");
+                li.style.padding = "8px";
+                li.style.borderBottom = "1px solid rgba(255, 255, 255, 0.1)";
+                li.style.backgroundColor = "rgba(255, 255, 255, 0.05)";
+                li.style.borderRadius = "4px";
+                li.style.marginBottom = "6px";
+                li.style.display = "flex";
+                li.style.justifyContent = "space-between";
+                li.style.alignItems = "center";
+
                 let a = document.createElement("a");
+                a.href = bookmark.url;
+                a.textContent = bookmark.title;
+                a.target = "_blank";
+                a.style.color = "#93c5fd";
+                a.style.textDecoration = "none";
+                a.style.flexGrow = "1";
+                a.style.overflow = "hidden";
+                a.style.whiteSpace = "nowrap";
+                a.style.textOverflow = "ellipsis";
+
                 a.href = bookmark.url;
                 a.textContent = bookmark.title;
                 a.target = "_blank";
@@ -32,6 +51,13 @@ document.addEventListener("DOMContentLoaded", function () {
                 let delButton = document.createElement("button");
                 delButton.textContent = "X";
                 delButton.style.marginLeft = "10px";
+                delButton.style.background = "red";
+                delButton.style.color = "white";
+                delButton.style.border = "none";
+                delButton.style.borderRadius = "4px";
+                delButton.style.cursor = "pointer";
+                delButton.style.padding = "4px 8px";
+                delButton.style.fontSize = "0.8rem";
                 delButton.onclick = function () {
                     deleteBookmark(index);
                 };
