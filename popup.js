@@ -21,12 +21,12 @@ document.addEventListener("DOMContentLoaded", function () {
             const exists = bookmarks.some(bookmark => bookmark.title === title && bookmark.url === url);
 
             if(exists){
-                alert("This chat already exists");
+                return;
             }
-            else{
+
                 bookmarks.push({ title, url });
                 chrome.storage.local.set({ bookmarks }, displayBookmarks);
-            }
+
         });
     });
 
