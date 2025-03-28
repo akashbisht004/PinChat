@@ -12,16 +12,21 @@ document.addEventListener("DOMContentLoaded", function () {
             return;
         }
 
+
+
+
         chrome.storage.local.get("bookmarks", function (data) {
             let bookmarks = data.bookmarks || [];
 
-            if(bookmarks.find(bookmark => bookmark.url ===url)){
-                alert("Already pinned");
+            const exists = bookmarks.some(bookmark => bookmark.title === title && bookmark.url === url);
+
+            if(exists){
                 return;
             }
-            
-            bookmarks.push({ title, url });
-            chrome.storage.local.set({ bookmarks }, displayBookmarks);
+
+                bookmarks.push({ title, url });
+                chrome.storage.local.set({ bookmarks }, displayBookmarks);
+
         });
     });
 
@@ -43,27 +48,11 @@ document.addEventListener("DOMContentLoaded", function () {
                 a.href = bookmark.url;
                 a.textContent = bookmark.title;
                 a.target = "_blank";
-                a.style.color = "#93c5fd";
-                a.style.textDecoration = "none";
-                a.style.flexGrow = "1";
-                a.style.overflow = "hidden";
-                a.style.whiteSpace = "nowrap";
-                a.style.textOverflow = "ellipsis";
 
-                a.href = bookmark.url;
-                a.textContent = bookmark.title;
-                a.target = "_blank";
 
                 let delButton = document.createElement("button");
-                delButton.textContent = "X";
-                delButton.style.marginLeft = "10px";
-                delButton.style.background = "red";
-                delButton.style.color = "white";
-                delButton.style.border = "none";
-                delButton.style.borderRadius = "4px";
-                delButton.style.cursor = "pointer";
-                delButton.style.padding = "4px 8px";
-                delButton.style.fontSize = "0.8rem";
+                delButton.textContent = "Delete";
+                delButton.className = "delete-btn";
                 delButton.onclick = function () {
                     deleteBookmark(index);
                 };
