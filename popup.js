@@ -14,6 +14,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
         chrome.storage.local.get("bookmarks", function (data) {
             let bookmarks = data.bookmarks || [];
+
+            if(bookmarks.find(bookmark => bookmark.url ===url)){
+                alert("Already pinned");
+                return;
+            }
+            
             bookmarks.push({ title, url });
             chrome.storage.local.set({ bookmarks }, displayBookmarks);
         });
